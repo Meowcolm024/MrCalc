@@ -13,7 +13,7 @@ sepElem (a : b : rest) | isUpper a && isLower b = [a, b] : sepElem rest
                        | all isDigit [a, b]     = [a, b] : sepElem rest
                        | otherwise              = [a] : sepElem (b : rest)
 
--- separate parens like (NH4)2SO4, KFe(SO4)2, K6[Fe(CN)6]2
+-- separate parens [] ()
 sepPars :: String -> String -> [String] -> [[String]]
 sepPars _ _ [] = []
 sepPars l r xs
