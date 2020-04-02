@@ -5,12 +5,8 @@ where
 
 import qualified Data.Map                      as M
 
-getWeight :: String -> Int
-getWeight e = fromJust $ M.lookup e elements
- where
-  fromJust :: Maybe Int -> Int
-  fromJust (Just i) = i
-  fromJust Nothing  = error $ "Element `" ++ e ++ "` not found :("
+getWeight :: String -> Maybe Int
+getWeight e = M.lookup e elements
 
 elements :: M.Map String Int
 elements = M.fromList elementsData

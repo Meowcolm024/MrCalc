@@ -9,6 +9,17 @@ The `molecular mass` of the atoms in `MrData.hs` is not complete
 
 ## Usage
 
+### Use Repl
+
+``` sh
+% runhaskell Repl.hs
+Formula:
+```
+
+You can just run the `Repl.hs` file and start inputing formulas :)
+
+### Load them to GHCi
+
 First load them to GHCi
 
 ``` haskell
@@ -20,7 +31,7 @@ The following is an example.
 
 ``` haskell
 *Calc> getSum "H2O"
-18
+Just 18
 ```
 
-More examples can be found in `Example.hs`
+More examples can be found in [`Example.hs`](Example.hs)
