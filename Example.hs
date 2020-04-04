@@ -1,8 +1,8 @@
 module Example where
 
-import Calc (getSum)
+import           Calc                           ( getSum )
 
-main :: IO()
+main :: IO ()
 main = do
     putStrLn $ "Fe : " ++ show (getSum "Fe")
     putStrLn $ "H2O : " ++ show (getSum "H2O")

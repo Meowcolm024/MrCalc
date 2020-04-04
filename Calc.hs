@@ -64,9 +64,8 @@ flatC = flat readMaybe
 flattenElems :: String -> [String]
 flattenElems = concatMap flatC . concatMap flatB . flatA . sepAll . sepElem
 
-getSum :: String -> Maybe Int
+getSum :: String -> Maybe Float
 getSum =
-  foldr (\x -> (<*>) ((+) <$> x)) (Just 0)
-    . map getWeight
+  foldr ((\x -> (<*>) ((+) <$> x)) . getWeight) (Just 0)
     . filter (`notElem` ["[", "]", "(", ")"])
     . flattenElems
