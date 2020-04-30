@@ -31,7 +31,7 @@ The following is an example.
 
 ``` haskell
 *Calc> getSum "H2O"
-Just 18
+Just 18.0
 ```
 
 More examples can be found in [`Example.hs`](Example.hs)
