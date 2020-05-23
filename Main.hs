@@ -1,7 +1,9 @@
 module Main where
 
 import           Calc                           ( getSum )
-import           System.IO
+import           System.IO                      ( hFlush
+                                                , stdout
+                                                )
 
 main :: IO ()
 main = flushStr "Mr Calculator\n" >> runRepl
@@ -9,7 +11,7 @@ main = flushStr "Mr Calculator\n" >> runRepl
 runRepl :: IO ()
 runRepl = readPrompt "Formula> " >>= \x -> case x of
     ""   -> runRepl
-    ":q" -> flushStr "Bye bye"
+    ":q" -> flushStr "Bye bye\n"
     ":e" -> example >> runRepl
     ":h" -> help >> runRepl
     _    -> flushStr (show (getSum x) ++ "\n") >> runRepl
