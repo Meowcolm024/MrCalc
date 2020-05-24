@@ -1,6 +1,6 @@
 module Main where
 
-import           Calc                           ( getSum )
+import           Calc                           ( calcMr )
 import           System.IO                      ( hFlush
                                                 , stdout
                                                 )
@@ -14,14 +14,14 @@ runRepl = readPrompt "Formula> " >>= \x -> case x of
     ":q" -> flushStr "Bye bye\n"
     ":e" -> example >> runRepl
     ":h" -> help >> runRepl
-    _    -> flushStr (show (getSum x) ++ "\n") >> runRepl
+    _    -> flushStr (show (calcMr x) ++ "\n") >> runRepl
 
 example :: IO ()
 example = mapM_ (putStrLn . getResult)
-                ["Fe", "H2O", "H2SO4", "(NH4)2CO3", "Fe3[Fe(CN)6]2"]
+                ["Fe", "H2O", "H2SO4", "(NH4)2CO3", "Fe3[Fe(CN)6]2", "CuSO4.5H2O"]
   where
     getResult :: String -> String
-    getResult x = x ++ ": " ++ show (getSum x)
+    getResult x = x ++ ": " ++ show (calcMr x)
 
 help :: IO ()
 help = mapM_

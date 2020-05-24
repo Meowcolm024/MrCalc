@@ -1,8 +1,12 @@
 {-# LANGUAGE LambdaCase #-}
-module Calc where
+module Calc
+  ( calcMr
+  )
+where
 
 import           Data.Char
 import           Text.Read                      ( readMaybe )
+import           Data.Maybe                     ( fromMaybe )
 import           MrData                         ( getWeight )
 
 -- separate elements and numbers
@@ -69,3 +73,26 @@ getSum =
   foldr ((\x -> (<*>) ((+) <$> x)) . getWeight) (Just 0)
     . filter (`notElem` ["[", "]", "(", ")"])
     . flattenElems
+
+sepDot :: String -> [String]
+sepDot [] = []
+sepDot xs = if null r then [l] else l : sepDot (tail r)
+  where (l, r) = break (== '.') xs
+
+sepLeadnum :: String -> (Int, String)
+sepLeadnum [] = (0, "")
+sepLeadnum xs =
+  let (m, n) = span isDigit xs
+      p      = fromMaybe 1 (readMaybe m :: Maybe Int)
+  in  (p, n)
+
+parse :: String -> [(Int, String)]
+parse = map sepLeadnum . sepDot
+
+calculate :: [(Int, String)] -> Maybe Float
+calculate = foldr
+  ((\x -> (<*>) ((+) <$> x)) . (\(x, y) -> (* fromIntegral x) <$> getSum y))
+  (Just 0)
+
+calcMr :: String -> Maybe Float
+calcMr = calculate . parse
