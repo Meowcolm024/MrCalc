@@ -12,7 +12,7 @@ The `molecular mass` of the atoms in `MrData.hs` is not complete
 ### Compile and Run
 
 ``` sh
-% ghc -o MrCalc Main.hs Calc.hs MrData.hs -O2
+% ghc -o MrCalc Main.hs -O2
 % ./MrCalc
 ```
 
@@ -29,4 +29,4 @@ You can just run the `Main.hs` file and start inputing formulas :)
 > Options:  
 > `:h` to show help  
 > `:q` to quit  
-> `:e` for examples
+> `:e` to show examples
